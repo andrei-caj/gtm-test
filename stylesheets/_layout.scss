@@ -1,0 +1,264 @@
+body {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background-color: $page-background;
+  border-top: 10px solid #0F0F0F;
+  margin: 0;
+  box-sizing: border-box;
+
+  .container {
+    width: 700px;
+    margin: 40px;
+
+    .subheading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .main-list {
+
+      .show-item {
+        display: flex;
+      }
+
+      .hide-item {
+        display: none;
+      }
+
+      &__item {
+        display: flex;
+        background-color: #fff;
+        margin: 10px 0;
+        padding: 15px 5px;
+        box-shadow: 0px 1px 6px #00000029;
+        border-radius: 6px;
+        box-sizing: border-box;
+
+        &-logo {
+          width: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.31s;
+          transition-timing-function: cubic-bezier(.28,.61,.26,1);
+          cursor: pointer;
+
+          &:hover {
+            opacity: 80%;
+          }
+        }
+
+        &-details {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          .badge {
+            border: 1px solid $button-background;
+            border-radius: 4px;
+            width: fit-content;
+            padding: 3px 5px;
+          }
+
+          .casino-name {
+            margin: 7px 0;
+            cursor: pointer;
+          }
+
+          .casino-star-rating {
+            display: flex;
+            align-items: center;
+
+            &__flag {
+              width: 20px;
+              margin-right: 5px;
+            }
+
+            &__score {
+              margin: 0 3px;
+            }
+
+            &__star {
+              margin: 0 3px;
+            }
+          }
+        }
+
+        &-buttons {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 250px;
+
+          .action-button {
+            width: fit-content;
+            padding: 5px 20px;
+            margin: 4px 0;
+            border: none;
+            border-radius: 20px;
+            background-color: $button-background;
+            cursor: pointer;
+            transition: all 0.31s;
+            transition-timing-function: cubic-bezier(.28,.61,.26,1);
+
+            &:hover {
+              background-color: $button-background-hover;
+            }
+          }
+
+          .top-button-container {
+            position: relative;
+
+            .popup {
+              box-sizing: border-box;
+              visibility: hidden;
+              width: 300px;
+              background-color: #fff;
+              border-radius: 6px;
+              padding: 20px;
+              padding-bottom: 10px;
+              text-align: initial;
+              position: absolute;
+              z-index: 1;
+              top: 125%;
+              left: -35%;
+              box-shadow: 0px 1px 6px #00000029;
+
+              &::after {
+                content: "";
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: transparent transparent #fff transparent;
+              }
+
+              &.show {
+                visibility: visible;
+              }
+
+              .close-icon {
+                position: absolute;
+                right: 12px;
+                top: 12px;
+                cursor: pointer;
+              }
+
+              .promo-code {
+                position: relative;
+                border: 2px dashed #878CA4;
+                border-radius: 4px;
+                padding: 15px;
+                margin: 20px 0;
+                text-align: center;
+                color: $medium-gray;
+                cursor: pointer;
+
+                #confirmation-popup {
+                  visibility: hidden;
+                  width: 225px;
+                  background-color: #fff;
+                  text-align: center;
+                  border-radius: 6px;
+                  padding: 13px;
+                  position: absolute;
+                  z-index: 1;
+                  bottom: 150%;
+                  left: 30%;
+                  margin-left: -75px;
+                  opacity: 0;
+                  transition: opacity 0.3s;
+                  box-shadow: 0px 1px 6px #00000029;
+                  color: $medium-gray;
+                  font-size: 13px;
+
+                  &::after {
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    margin-left: -8px;
+                    border-width: 8px;
+                    border-style: solid;
+                    border-color: #fff transparent transparent transparent;
+                  }
+
+                  &.show {
+                    visibility: visible;
+                    opacity: 1;
+                  }
+
+                  img {
+                    margin-right: 10px;
+                  }
+                }
+              }
+
+              &-row {
+                margin: 10px 0;
+                display: flex;
+
+                &__title {
+                  color: #878CA4;
+                  width: 120px;
+                  flex-shrink: 0;
+                }
+
+                &__content {
+                  color: $medium-gray;
+
+                  &.green-text {
+                    color: $green;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &-link {
+          width: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          a {
+            background-color: $blue;
+            border-radius: 4px;
+            width: 70px;
+            transition: all 0.31s;
+            transition-timing-function: cubic-bezier(.28,.61,.26,1);  
+    
+            &:hover {
+              background-color: $blue-hover;
+            }
+          }
+        }
+      }
+    }
+
+    #load-more {
+      width: 100%;
+      height: 50px;
+      border-radius: 50px;
+      border: 1px solid $blue;
+      background-color: #fff;
+      font-size: 14px;
+      color: $blue;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: all 0.31s;
+      transition-timing-function: cubic-bezier(.28,.61,.26,1);  
+
+      &:hover {
+        background-color: $blue;
+        color: #fff;
+      }
+    }
+  }
+}
