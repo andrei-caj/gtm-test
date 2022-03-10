@@ -68,66 +68,38 @@ let casinos = [
 // functions
 
 function drawItems() {
-  var str="";
   var limit=4;
-  var popup=
-  `<div class='popup' id='popup'>
-    <img class='close-icon' src='img/close-icon.png'>
-    <h3>20 Free Spins at 21 Dukes Casino</h3>
-    <div class='promo-code'>
-      <span id="confirmation-popup"><img src='img/check.png'>Code copied to clipboard.</span>
-      <span id="promo-code-text">WELCOME</span>
-    </div>
-    <div class='popup-row'>
-      <span class='popup-row__title'>Games allowed:</span>
-      <span class='popup-row__content'>Slots, Keno, Scratch Cards, Bingo</span>
-    </div>
-    <div class='popup-row'>
-      <span class='popup-row__title'>Max cash out:</span>
-      <span class='popup-row__content'>$100</span>
-    </div>
-    <div class='popup-row'>
-      <span class='popup-row__title'>Min. deposit:</span>
-      <span class='popup-row__content green-text'>FREE</span>
-    </div>
-  </div>`
+  var popup=$('#popup');
 
-  for (var i in casinos){
-  str+=
-    `<div class="main-list__item ${(i<limit)?"show-item":"hide-item"}">
-      <div class="main-list__item-logo">
-        <img src="${casinos[i].logo}" class="card-img-top" alt="...">
-      </div>
-      <div class="main-list__item-details">
-        <span class="badge ${(casinos[i].badge)?"show-item":"hide-item"}">NEW</span>
-        <p class="casino-name">${casinos[i].name}</p>
-        <div class="casino-star-rating">
-          <img src="img/us-flag.svg" class="casino-star-rating__flag" alt="...">
-          <span class="casino-star-rating__score">4.4</span>
-          <img src="img/star_rounded.svg" class="casino-star-rating__star" alt="...">
-          <img src="img/star_rounded.svg" class="casino-star-rating__star" alt="...">
-          <img src="img/star_rounded.svg" class="casino-star-rating__star" alt="...">
-          <img src="img/star_rounded.svg" class="casino-star-rating__star" alt="...">
-          <img src="img/star_rounded-1.svg" class="casino-star-rating__star" alt="...">
-        </div>
-      </div>
-      <div class="main-list__item-buttons">
-        <div id="top-button-container-${i}" class="top-button-container">
-          <button id="top-button-${i}" class="${(casinos[i].topButton)?"action-button":"hide-item"}">
-            ${casinos[i].topButton}
-          </button>
-          ${(i<1)?popup:""}
-        </div>
-        <button id="bottom-button-${i}" class="action-button">${casinos[i].bottomButton}</button>
-      </div>
-      <div class="main-list__item-link">
-        <a href="*">Visit</a>
-      </div>
-    </div>`;
-  }
+  $.each(casinos, function (i) {
 
-  $("#main-list").html(str);
+    var mainListItem = $("body").find("#list-item-template > .main-list__item").clone();
 
+    if (i >= limit) {
+      mainListItem.addClass('hide-item');
+    }
+
+    if (!this.badge) {
+      mainListItem.find(".badge").addClass('hide-item');
+    }
+
+    mainListItem.find(".casino-name").append(this.name);
+    mainListItem.find(".main-list__item-logo > img").attr("src", this.logo);
+
+    if (this.topButton) {
+      mainListItem.find(".top-button-container").attr('id','top-button-container-' + i);
+      mainListItem.find(".top-button").append(this.topButton).attr('id','top-button-' + i);
+    }
+    else {
+      mainListItem.find(".top-button").addClass('hide-item');
+    }
+
+    mainListItem.find(".bottom-button").append(this.bottomButton);
+
+    $(mainListItem).appendTo("#main-list");
+  });
+
+  popup.appendTo($('#top-button-container-0'));
 }
 
 function showMore() {
