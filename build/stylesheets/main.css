@@ -71,6 +71,9 @@ body {
   margin: 0;
   box-sizing: border-box;
 }
+body #list-item-template {
+  display: none;
+}
 body .container {
   width: 700px;
   margin: 40px;
